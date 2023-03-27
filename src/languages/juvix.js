@@ -88,7 +88,7 @@ export default function (hljs) {
     name: 'Juvix',
     aliases: ['juvix'],
     keywords:
-      'let in if then else case of where do module import hiding ' +
+      'even let in if then else case of where do module import hiding ' +
       'qualified type data newtype deriving class instance as default ' +
       'infix infixl infixr foreign export ccall stdcall cplusplus ' +
       'jvm dotnet safe unsafe family forall mdo proc rec',

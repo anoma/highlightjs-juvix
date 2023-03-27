@@ -2,7 +2,7 @@
   "name": "highlightjs-juvix",
   "version": "1.0.0",
   "description": "Juvix language grammars for HightlightJS",
-  "main": "dist/juvix-min.js",
+  "main": "dist/juvix.min.js",
   "repository": "git@github.com:anoma/highlightjs-juvix.git",
   "author": "Jonathan Cubides and contributors on GitHub",
   "license": "MIT",
@@ -13,7 +13,8 @@
     "changelog": "auto-changelog --output CHANGELOG.md --hide-credit -p --commit-limit false",
     "npm-patch": "npm version patch && npm publish",
     "upgrade-dependencies": "ncu -u",
-    "fix": "prettier --write . && eslint -c .eslintrc.js --fix"
+    "fix": "prettier --write . && eslint -c .eslintrc.js --fix",
+    "dev": "npx webpack serve --client-progress --live-reload"
   },
   "keywords": [
     "Juvix",
@@ -31,13 +32,15 @@
     "@babel/core": "^7.21.3",
     "auto-changelog": "^2.4.0",
     "babel-loader": "^9.1.2",
+    "copy-webpack-plugin": "^11.0.0",
     "highlight.js": "^11.7.0",
     "minimist": "^1.2.8",
     "mocha": "^10.2.0",
     "prettier": "2.8.7",
     "should": "^13.2.3",
     "webpack": "^5.76.3",
-    "webpack-cli": "^5.0.1"
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.13.1"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.56.0",

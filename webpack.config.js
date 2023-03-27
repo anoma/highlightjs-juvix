@@ -1,11 +1,12 @@
 const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   mode: 'production',
   entry: './src/languages/juvix.js',
   output: {
     path: path.resolve('dist'),
-    filename: 'juvix-min.js',
+    filename: 'juvix.min.js',
     libraryTarget: 'commonjs2'
   },
   module: {
@@ -19,5 +20,26 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js']
-  }
+  },
+  plugins: [
+    new CopyPlugin({
+      patterns: [
+        {from: 'assets'}
+      ]
+    })
+  ],
+  devServer: {
+    client: {
+      progress: true,
+    },
+    static: {
+      directory: path.join(__dirname, 'dist'),
+    },
+    compress: false,
+    port: 9003,
+    hot: false,
+    watchFiles: {
+      paths: ['./src/**/*', './assets/**/*', './dist/testcode.html'],
+    }
+  },
 };

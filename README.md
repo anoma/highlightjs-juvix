@@ -1,9 +1,8 @@
 # Juvix support for Highlight.js
 
-![install size](https://badgen.net/packagephobia/install/highlightjs-juvix)
 [![GitHub](https://img.shields.io/github/license/anoma/highlightjs-juvix)](https://github.com/anoma/highlightjs-juvix/blob/main/LICENSE.md)
-![Snyk Vulnerabilities for npm package](https://img.shields.io/snyk/vulnerabilities/npm/highlightjs-juvix)
-[![CDN download](https://badgen.net/badge/jsDelivr/download/blue?icon=jsdelivr)](https://cdn.jsdelivr.net/npm/highlightjs-juvix/dist/juvix.min.js)
+
+<!-- [![CDN download](https://badgen.net/badge/jsDelivr/download/blue?icon=jsdelivr)](https://cdn.jsdelivr.net/npm/highlightjs-juvix/dist/juvix.min.js) -->
 
 ## Usage
 
@@ -28,8 +27,11 @@ This will find and highlight code inside `<pre><code>` tags; it tries to detect 
 
 ```html
 <pre>
-    <code class="language-juvix">
-    ...
+    <code class="juvix">
+      module HelloWorld;
+      open import Stdlib.Prelude;
+      main : IO;
+      main := printStringLn "hello world!";
     </code>
 </pre>
 ```
