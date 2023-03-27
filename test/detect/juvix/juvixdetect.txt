@@ -1,0 +1,9 @@
+module Juvix;
+
+type Unit : Type :=
+ | unit : Type;
+
+f : Unit -> Unit;
+f p := unit;  
+
+end;

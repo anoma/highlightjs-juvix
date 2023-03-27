@@ -1,0 +1,40 @@
+{
+  "name": "highlightjs-juvix",
+  "version": "1.0.0",
+  "description": "Juvix language grammars for HightlightJS",
+  "main": "src/languages/juvix.js",
+  "repository": "git@github.com:anoma/highlightjs-juvix.git",
+  "author": "The Juvix Team",
+  "license": "MIT",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec",
+    "mocha": "mocha test/markup",
+    "changelog": "auto-changelog --output HISTORY.md --hide-credit -p --commit-limit false",
+    "npm-patch": "npm version patch && npm publish",
+    "upgrade-dependencies": "ncu -u",
+    "fix": "prettier --write . && eslint -c .eslintrc.js --fix"
+  },
+  "keywords": [
+    "Juvix",
+    "Anoma",
+    "Heliax",
+    "hljs",
+    "highlightjs",
+    "highlight.js"
+  ],
+  "bugs": {
+    "url": "https://github.com/anoma/highlightjs-juvix/issues"
+  },
+  "homepage": "https://github.com/anoma/highlightjs-juvix#readme",
+  "devDependencies": {
+    "highlight.js": "^11.5.1",
+    "minimist": "^1.2.6",
+    "mocha": "^9.2.2",
+    "prettier": "2.6.2",
+    "should": "^13.2.3"
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.56.0",
+    "eslint": "^8.36.0"
+  }
+}
