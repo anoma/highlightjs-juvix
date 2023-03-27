@@ -16,18 +16,6 @@ export default function (hljs) {
     ]
   };
 
-  const PRAGMA = {
-    className: 'meta',
-    begin: /\{-#/,
-    end: /#-\}/
-  };
-
-  const PREPROCESSOR = {
-    className: 'meta',
-    begin: '^#',
-    end: '$'
-  };
-
   const CONSTRUCTOR = {
     className: 'type',
     begin: "\\b[A-Z][\\w']*", // TODO: other constructors (build-in, infix).
@@ -39,8 +27,6 @@ export default function (hljs) {
     end: '\\)',
     illegal: '"',
     contains: [
-      PRAGMA,
-      PREPROCESSOR,
       {
         className: 'type',
         begin: '\\b[A-Z][\\w]*(\\((\\.\\.|,|\\w+)\\))?'
@@ -50,19 +36,9 @@ export default function (hljs) {
     ]
   };
 
-  const RECORD = {
-    begin: /\{/,
-    end: /\}/,
-    contains: LIST.contains
-  };
-
-  /* See:
-     - https://www.haskell.org/onlinereport/lexemes.html
-     - https://downloads.haskell.org/ghc/9.0.1/docs/html/users_guide/exts/binary_literals.html
-     - https://downloads.haskell.org/ghc/9.0.1/docs/html/users_guide/exts/numeric_underscores.html
-     - https://downloads.haskell.org/ghc/9.0.1/docs/html/users_guide/exts/hex_float_literals.html
-  */
   const decimalDigits = '([0-9]_*)+';
+  // The following three are not supported yet but
+  // likely considered in the future.
   const hexDigits = '([0-9a-fA-F]_*)+';
   const binaryDigits = '([01]_*)+';
   const octalDigits = '([0-7]_*)+';
@@ -91,19 +67,16 @@ export default function (hljs) {
   };
 
   return {
-    name: 'Haskell',
-    aliases: ['hs'],
+    name: 'Juvix',
+    aliases: ['juvix'],
     keywords:
-      'let in if then else case of where do module import hiding ' +
-      'qualified type data newtype deriving class instance as default ' +
-      'infix infixl infixr foreign export ccall stdcall cplusplus ' +
-      'jvm dotnet safe unsafe family forall mdo proc rec',
+      'let in if then else case of where do module open import public type data infix ',
     contains: [
       // Top-level constructions.
       {
         beginKeywords: 'module',
-        end: 'where',
-        keywords: 'module where',
+        end: '',
+        keywords: 'module end',
         contains: [LIST, COMMENT],
         illegal: '\\W\\.|;'
       },
