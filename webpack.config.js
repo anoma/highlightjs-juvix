@@ -6,18 +6,18 @@ module.exports = {
   output: {
     path: path.resolve('dist'),
     filename: 'juvix.js',
-    libraryTarget: 'commonjs2',
+    libraryTarget: 'commonjs2'
   },
   module: {
     rules: [
       {
         test: /\.js?$/,
         exclude: /(node_modules)/,
-        use: 'babel-loader',
-      },
-    ],
+        use: 'babel-loader'
+      }
+    ]
   },
   resolve: {
-    extensions: ['.js'],
-  },
+    extensions: ['.js']
+  }
 };
