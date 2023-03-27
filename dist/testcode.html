@@ -4,7 +4,7 @@
     <title>TEST JUVIX HIGHLIGHT.JS PLUGIN</title>
     <meta charset="UTF-8" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-    <script charset="UTF-8" src="../dist/juvix.min.js"></script>
+    <script charset="UTF-8" src="./../src/languages/juvix.js"></script>
     <link rel="stylesheet" href="./highlight.css" />
     <script>
       hljs.debugMode();
@@ -21,12 +21,13 @@
   <body>
     <h1>Example of a Juvix program!</h1>
     <pre><code class="juvix">
+  {-
+    This is a Juvix program that implements a few functions, nothing special.
+  -}
   module Demo;
-  -- standard library prelude
+  -- Inline comments are also supported.
   open import Stdlib.Prelude;
-  -- for comparisons on natural numbers
   open import Stdlib.Data.Nat.Ord;
-  -- for Ordering
   open import Stdlib.Data.Ord;
   
   even : Nat → Bool;
@@ -37,11 +38,11 @@
   even' : Nat → Bool;
   even' n := mod n 2 == 0;
   
-  -- base 2 logarithm rounded down
   terminating
   log2 : Nat → Nat;
   log2 n := if (n <= 1) 0 (suc (log2 (div n 2)));
   
+  positivity -- not needed, but it's a keyword
   type Tree (A : Type) :=
     | leaf : A → Tree A
     | node : A → Tree A → Tree A → Tree A;

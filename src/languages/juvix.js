@@ -1,7 +1,8 @@
 /*
 Language: Juvix
+Description: Juvix is a high-level programming language for writing privacy-preserving decentralised applications.
 Author: Jonathan Cubides <jonathan@heliax.dev>
-Category: 
+Category: Functional programming
 Website: https://juvix.org
 */
 
@@ -56,6 +57,12 @@ export default function (hljs) {
     contains: LIST.contains
   };
 
+  /* See:
+     - https://www.haskell.org/onlinereport/lexemes.html
+     - https://downloads.haskell.org/ghc/9.0.1/docs/html/users_guide/exts/binary_literals.html
+     - https://downloads.haskell.org/ghc/9.0.1/docs/html/users_guide/exts/numeric_underscores.html
+     - https://downloads.haskell.org/ghc/9.0.1/docs/html/users_guide/exts/hex_float_literals.html
+  */
   const decimalDigits = '([0-9]_*)+';
   const hexDigits = '([0-9a-fA-F]_*)+';
   const binaryDigits = '([01]_*)+';
@@ -85,10 +92,10 @@ export default function (hljs) {
   };
 
   return {
-    name: 'Juvix',
-    aliases: ['juvix'],
+    name: 'Haskell',
+    aliases: ['hs'],
     keywords:
-      'even let in if then else case of where do module import hiding ' +
+      'let in if then else case of where do module import hiding ' +
       'qualified type data newtype deriving class instance as default ' +
       'infix infixl infixr foreign export ccall stdcall cplusplus ' +
       'jvm dotnet safe unsafe family forall mdo proc rec',

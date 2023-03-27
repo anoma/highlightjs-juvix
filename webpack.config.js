@@ -5,9 +5,9 @@ module.exports = {
   mode: 'production',
   entry: './src/languages/juvix.js',
   output: {
-    path: path.resolve('dist'),
+    path: path.join(__dirname, 'dist'),
     filename: 'juvix.min.js',
-    libraryTarget: 'commonjs2'
+    library: 'commonjs2'
   },
   module: {
     rules: [
@@ -23,23 +23,21 @@ module.exports = {
   },
   plugins: [
     new CopyPlugin({
-      patterns: [
-        {from: 'assets'}
-      ]
+      patterns: [{ from: 'assets' }]
     })
   ],
   devServer: {
     client: {
-      progress: true,
+      progress: true
     },
     static: {
-      directory: path.join(__dirname, 'dist'),
+      directory: path.join(__dirname, 'dist')
     },
-    compress: false,
+    compress: true,
     port: 9003,
     hot: false,
     watchFiles: {
-      paths: ['./src/**/*', './assets/**/*', './dist/testcode.html'],
+      paths: ['./src/**/*', './assets/**/*', './dist/testcode.html']
     }
-  },
+  }
 };

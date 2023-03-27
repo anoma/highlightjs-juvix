@@ -57,7 +57,7 @@ module.exports = {
       }
     },
     {
-      files: ['src/languages/*.js'],
+      files: ['src/**/*.js'],
       rules: {
         'no-unused-expressions': 'off',
         // languages are all over the map and we don't want to
