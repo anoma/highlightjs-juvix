@@ -4,10 +4,12 @@
     <title>TEST JUVIX HIGHLIGHT.JS PLUGIN</title>
     <meta charset="UTF-8" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-    <script charset="UTF-8" src="./../src/languages/juvix.js"></script>
+    <!-- <script charset="UTF-8" src="./../src/languages/juvix.js"></script> -->
+    <script charset="UTF-8" src="./juvix.min.js"></script>
     <link rel="stylesheet" href="./highlight.css" />
     <script>
-      hljs.debugMode();
+      hljs.debugMode( );
+      hljs.registerLanguage('juvix', hljsDefineJuvix);
       hljs.highlightAll();
     </script>
     <style>
@@ -20,12 +22,16 @@
 
   <body>
     <h1>Example of a Juvix program!</h1>
-    <pre><code class="juvix">
+    <pre><code class="language-juvix">
   {-
     This is a Juvix program that implements a few functions, nothing special.
   -}
   module Demo;
+
   -- Inline comments are also supported.
+
+  --- Judoc comment.
+
   open import Stdlib.Prelude;
   open import Stdlib.Data.Nat.Ord;
   open import Stdlib.Data.Ord;

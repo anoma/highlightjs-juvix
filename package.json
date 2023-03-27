@@ -7,14 +7,13 @@
   "author": "Jonathan Cubides and contributors on GitHub",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --mode production",
+    "compress": "uglifyjs src/languages/juvix.js --compress --mangle --warn --output dist/juvix.min.js",
     "test": "./node_modules/.bin/mocha --reporter spec",
     "mocha": "mocha test/markup",
     "changelog": "auto-changelog --output CHANGELOG.md --hide-credit -p --commit-limit false",
     "npm-patch": "npm version patch && npm publish",
     "upgrade-dependencies": "ncu -u",
-    "fix": "prettier --write . && eslint -c .eslintrc.js --fix",
-    "dev": "npx webpack serve --client-progress --live-reload"
+    "fix": "prettier --write . && eslint -c .eslintrc.js --fix"
   },
   "keywords": [
     "Juvix",
@@ -39,9 +38,7 @@
     "prettier": "2.8.7",
     "should": "^13.2.3",
     "typescript": "^5.0.2",
-    "webpack": "^5.76.3",
-    "webpack-cli": "^5.0.1",
-    "webpack-dev-server": "^4.13.1"
+    "uglify-js": "^3.3.11"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.56.0",

@@ -19,6 +19,7 @@ Simply load this module after loading Highlight.js. You'll use the minified vers
 	those in highlightjs core repo -->
 <link rel="stylesheet" href="https://unpkg.com/highlightjs/styles/vs.css" />
 <script type="text/javascript">
+  hljs.registerLanguage('juvix', hljsDefineJuvix); // this might not be needed
   hljs.highlightAll();
 </script>
 ```
@@ -27,7 +28,7 @@ This will find and highlight code inside `<pre><code>` tags; it tries to detect 
 
 ```html
 <pre>
-    <code class="juvix">
+    <code class="language-juvix">
       module HelloWorld;
       open import Stdlib.Prelude;
       main : IO;
