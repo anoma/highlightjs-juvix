@@ -2,7 +2,7 @@
   "name": "highlightjs-juvix",
   "version": "1.0.0",
   "description": "Juvix language grammars for HightlightJS",
-  "main": "dist/juvix.js",
+  "main": "dist/juvix-min.js",
   "repository": "git@github.com:anoma/highlightjs-juvix.git",
   "author": "Jonathan Cubides and contributors on GitHub",
   "license": "MIT",
@@ -10,7 +10,7 @@
     "build": "webpack --mode production",
     "test": "./node_modules/.bin/mocha --reporter spec",
     "mocha": "mocha test/markup",
-    "changelog": "auto-changelog --output HISTORY.md --hide-credit -p --commit-limit false",
+    "changelog": "auto-changelog --output CHANGELOG.md --hide-credit -p --commit-limit false",
     "npm-patch": "npm version patch && npm publish",
     "upgrade-dependencies": "ncu -u",
     "fix": "prettier --write . && eslint -c .eslintrc.js --fix"
@@ -29,6 +29,7 @@
   "homepage": "https://github.com/anoma/highlightjs-juvix#readme",
   "devDependencies": {
     "@babel/core": "^7.21.3",
+    "auto-changelog": "^2.4.0",
     "babel-loader": "^9.1.2",
     "highlight.js": "^11.7.0",
     "minimist": "^1.2.8",

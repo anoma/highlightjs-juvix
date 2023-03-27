@@ -5,7 +5,7 @@ module.exports = {
   entry: './src/languages/juvix.js',
   output: {
     path: path.resolve('dist'),
-    filename: 'juvix.js',
+    filename: 'juvix-min.js',
     libraryTarget: 'commonjs2'
   },
   module: {
