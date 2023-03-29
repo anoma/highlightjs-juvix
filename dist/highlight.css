@@ -1,13 +1,15 @@
+
 pre code.hljs {
   display: block;
   overflow-x: auto;
   padding: 1em;
+
 }
 code.hljs {
   padding: 3px 5px;
 }
 .hljs {
-  background: #fff;
+  background: aliceblue;
   color: #000;
 }
 .hljs-comment,

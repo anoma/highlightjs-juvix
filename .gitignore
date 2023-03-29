@@ -105,4 +105,4 @@ typings/
 
 # OSX file
 .DS_Store
-.juvix_build
+.juvix_build/

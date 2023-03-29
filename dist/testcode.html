@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>TEST JUVIX HIGHLIGHT.JS PLUGIN</title>
+    <title>Testing Juvix plugin</title>
     <meta charset="UTF-8" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <!-- <script charset="UTF-8" src="./../src/languages/juvix.js"></script> -->
-    <script charset="UTF-8" src="./juvix.min.js"></script>
+    <script charset="UTF-8" src="./../src/languages/juvix.js"></script>
     <link rel="stylesheet" href="./highlight.css" />
     <script>
       hljs.debugMode( );
@@ -23,69 +23,63 @@
   <body>
     <h1>Example of a Juvix program!</h1>
     <pre><code class="language-juvix">
-  {-
+{- {- ... -}
+    {- --  -}
     This is a Juvix program that implements a few functions, nothing special.
   -}
-  module Demo;
+  module {- coment -} Demo.Example.Tutorial {-comment-} ;
 
-  -- Inline comments are also supported.
-
+  -- {-- Inline comments are also supported. -}
+  -- -- Inline comments are also supported. --
+    
   --- Judoc comment.
+  {name1; name2}
+  {name1; name2;};
 
-  open import Stdlib.Prelude;
-  open import Stdlib.Data.Nat.Ord;
-  open import Stdlib.Data.Ord;
-  
+infix 4 _≤_;
+infixl 6 _+_;
+infixr 7 _*_;
+
+open import Stdlib.Prelude;
+import Stdlib.Data.Nat.Ord;
+open import Stdlib.Data.Ord public;
+open import Stdlib.Data.Ord public --asdf;
+open import Stdlib.Data.Ord public {--asdf--};
+open import Stdlib.Map using {name1; name2};
+open import Stdlib.Map using {name1; 
+-- comment
+name2;
+{- final comment here -}
+};
+open M;
+open N public;
+open import Stdlib.Map using {name1; name2} hiding {name3; name4} public;
+open import Stdlib.Map hiding {name3; name4};
+open import Stdlib.Map hiding {name3, name4};
+
+open import {--- hhh --} Stdlib.Data.Ord;
+open import Stdlib.Data.Product 
+-- comment in between 
+  using 
+    -- comment
+    {
+    {- another comment -}
+    uncurry; -- comment
+    -- This is a comment
+  fst}
+  -- comment in the middle
+  ;
+
+module AA; 
+ -- coment
+end;
+
   even : Nat → Bool;
   even zero := true;
   even (suc zero) := false;
   even (suc (suc n)) := even n;
   
-  even' : Nat → Bool;
-  even' n := mod n 2 == 0;
-  
-  terminating
-  log2 : Nat → Nat;
-  log2 n := if (n <= 1) 0 (suc (log2 (div n 2)));
-  
-  positivity -- not needed, but it's a keyword
-  type Tree (A : Type) :=
-    | leaf : A → Tree A
-    | node : A → Tree A → Tree A → Tree A;
-  
-  mirror : {A : Type} → Tree A → Tree A;
-  mirror t@(leaf _) := t;
-  mirror (node x l r) := node x (mirror r) (mirror l);
-  
-  tree : Tree Nat;
-  tree := node 2 (node 3 (leaf 0) (leaf 1)) (leaf 7);
-  
-  preorder : {A : Type} → Tree A → List A;
-  preorder (leaf x) := x :: nil;
-  preorder (node x l r) :=
-    x :: nil ++ preorder l ++ preorder r;
-  
-  terminating
-  sort : {A : Type} → (A → A → Ordering) → List A → List A;
-  sort _ nil := nil;
-  sort _ xs@(_ :: nil) := xs;
-  sort cmp xs :=
-    uncurry
-      (merge cmp)
-      (both (sort cmp) (splitAt (div (length xs) 2) xs));
-  
-  printNatListLn : List Nat → IO;
-  printNatListLn nil := printStringLn "nil";
-  printNatListLn (x :: xs) :=
-    printNat x >> printString " :: " >> printNatListLn xs;
-  
-  main : IO;
-  main :=
-    printStringLn "Hello!"
-      >> printNatListLn (preorder (mirror tree))
-      >> printNatListLn (sort compare (preorder (mirror tree)))
-      >> printNatLn (log2 3)
-      >> printNatLn (log2 130);
+  end;
 </code></pre>
   </body>
 </html>

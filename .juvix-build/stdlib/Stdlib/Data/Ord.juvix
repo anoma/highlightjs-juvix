@@ -1,0 +1,20 @@
+module Stdlib.Data.Ord;
+  open import Stdlib.Data.Bool;
+
+  type Ordering :=
+    | LT : Ordering
+    | EQ : Ordering
+    | GT : Ordering;
+
+  isLT : Ordering → Bool;
+  isLT LT := true;
+  isLT _ := false;
+
+  isEQ : Ordering → Bool;
+  isEQ EQ := true;
+  isEQ _ := false;
+
+  isGT : Ordering → Bool;
+  isGT GT := true;
+  isGT _ := false;
+end;
