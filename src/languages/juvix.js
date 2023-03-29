@@ -38,55 +38,36 @@ const kwPositive = 'positive';
 const kwTerminating = 'terminating';
 const kwMapsTo = '(->|↦)';
 
-const SYMBOLS = [
-  '->',
-  ':=',
-  ':',
-  '\\',
-  '→',
-  '↦',
-  '>',
-  '<',
-  '=',
-  '≠',
-  '≤',
-  '<=',
-  '≥',
-  '>=',
-  '>>',
-  '<<',
-  '||',
-  '&&'
-];
-
-const KEYWORDS = [
-  '->',
-  ':=',
-  ':',
-  '\\',
-  '→',
-  '↦',
-  'axiom',
-  'builtin',
-  'case',
-  'end',
-  'hiding',
-  'import',
-  'in',
-  // 'infix',
-  // 'infixl',
-  // 'infixr',
-  'let',
-  'module',
-  'open',
-  'positive',
-  // 'postfix',
-  'public',
-  'terminating',
-  'type',
-  'Type',
-  'using',
-  'λ'
+const kwAll = [
+  kwAssign,
+  kwAt,
+  kwAxiom,
+  kwCase,
+  kwColon,
+  kwEnd,
+  kwHiding,
+  kwHole,
+  kwImport,
+  kwIn,
+  kwInductive,
+  kwInfix,
+  kwInfixl,
+  kwInfixr,
+  kwLambda,
+  kwLet,
+  kwModule,
+  kwOpen,
+  kwPipe,
+  kwPostfix,
+  kwPublic,
+  kwRightArrow,
+  kwSemicolon,
+  kwType,
+  kwUsing,
+  kwWildcard,
+  kwPositive,
+  kwTerminating,
+  kwMapsTo
 ];
 
 const MODULE_NAME_RE = /[a-zA-Z][a-zA-Z0-9_]*(\.[a-zA-Z][a-zA-Z0-9_]*)*/;
@@ -111,70 +92,292 @@ function hljsDefineJuvix(hljs) {
     variants: [INLINE_COMMENT, BLOCK_COMMENT]
   };
 
-  const NUMBER = {
-    scope: 'number',
-    variants: [
-      { begin: "\\b(0b[01']+)" },
-      {
-        begin:
-          "(-?)\\b([\\d']+(\\.[\\d']*)?|\\.[\\d']+)((ll|LL|l|L)(u|U)?|(u|U)(ll|LL|l|L)?|f|F|b|B)"
-      },
-      {
-        begin:
-          "(-?)(\\b0[xX][a-fA-F0-9']+|(\\b[\\d']+(\\.[\\d']*)?|\\.[\\d']+)([eE][-+]?[\\d']+)?)"
-      }
-    ],
-    relevance: 0
-  };
-
-  const IDEN = {
-    scope: 'symbol',
-    match: '.*'
-  };
-
-  const INFIX = {
-    begin : [
-      /(infix|infixl|infixr|postfix)/,
-      /\s+/,
-      /\d+/,
-      /\s+/,
-      /[^;]+/,
-  ],
-  beginScope: {
-    1: 'keyword',
-    3: 'number',
-    5: 'symbol',
-  },
-  end: [/\s*/,
-    /;/, /\s+/],
-  endScope: {
-    2: 'keyword',
-  },
-  contains: []
-  };
-
-  const SYMBOL_LIST = {
-    scope: 'symbol_list',
-    begin: /\{/,
-    beginScope: 'keyword',
-    end: /\}/,
-    endScope: 'keyword',
+  const MODULE_BEGIN = {
+    scope: 'keyword',
+    beginKeywords: 'module',
+    end: hljs.MATCH_NOTHING_RE,
     contains: [
-      COMMENT,
+      BLOCK_COMMENT,
       {
-        end: kwSemicolon,
-        endScope: 'keyword',
-        endsWithParent: true,
-        contains: [INFIX, COMMENT]
+        scope: 'title',
+        begin: MODULE_NAME_RE,
+        end: hljs.MATCH_NOTHING_RE,
+        endsParent: true,
+        contains: [
+          BLOCK_COMMENT,
+          {
+            scope: 'keyword',
+            begin: kwSemicolon,
+            endsParent: true,
+            contains: []
+          }
+        ]
       }
     ]
   };
 
-  // const QUALIFIED_ID = {
-  //   scope: 'title',
-  //   match: MODULE_NAME_RE
-  // };
+  const MODULE_END = {
+    scope: 'keyword',
+    begin: kwEnd,
+    end: kwSemicolon
+  };
 
+  const INFIX = {
+    beginKeywords: 'infix infixl infixr postfix',
+    end: hljs.MATCH_NOTHING_RE,
+    contains: [
+      COMMENT,
+      {
+        scope: 'number',
+        begin: /\d+/,
+        end: hljs.MATCH_NOTHING_RE,
+        endsParent: true,
+        contains: [
+          COMMENT,
+          {
+            scope: 'symbol',
+            begin: /[^\s;\{]+/, // TODO: \{ isnot properly handled
+            end: kwSemicolon,
+            endScope: 'keyword',
+            endsParent: true,
+            contains: [COMMENT]
+          }
+        ]
+      }
+    ]
+  };
+
+  const IMPORT = {
+    beginKeywords: kwImport,
+    end: hljs.MATCH_NOTHING_RE,
+    contains: [
+      COMMENT,
+      {
+        begin: [MODULE_NAME_RE],
+        beginScope: {
+          1: 'title'
+        },
+        end: hljs.MATCH_NOTHING_RE,
+        endsParent: true,
+        contains: [
+          COMMENT,
+          {
+            scope: 'keyword',
+            match: kwSemicolon,
+            endsParent: true
+          },
+          {
+            begin: [kwPublic],
+            beginScope: {
+              1: 'keyword'
+            },
+            end: hljs.MATCH_NOTHING_RE,
+            endsParent: true,
+            illegal: /--.*$/,
+            contains: [
+              COMMENT,
+              {
+                scope: 'keyword',
+                match: kwSemicolon,
+                endsParent: true
+              }
+            ]
+          },
+          {
+            beginKeywords: 'hiding using',
+            end: hljs.MATCH_NOTHING_RE,
+            endsParent: true,
+            contains: [
+              COMMENT,
+              {
+                begin: /\{/,
+                beginScope: 'keyword',
+                end: /\}/,
+                endScope: 'keyword',
+                endsParent: true,
+                contains: [
+                  COMMENT,
+                  {
+                    begin: [/[a-zA-Z][a-zA-Z0-9_]*/],
+                    beginScope: {
+                      1: 'symbol'
+                    },
+                    contains: [
+                      COMMENT,
+                      {
+                        scope: 'keyword',
+                        match: kwSemicolon,
+                        contains: [COMMENT]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  };
+
+  const OPEN = {
+    beginKeywords: 'open',
+    end: hljs.MATCH_NOTHING_RE,
+    contains: [
+      COMMENT,
+      // open import .. here we use almost the same mode as import
+      // but only one modification is needed: endsParent is set to true
+      // REFACTOR: this is a bit hacky
+      {
+        endsParent: true,
+        beginKeywords: kwImport,
+        end: hljs.MATCH_NOTHING_RE,
+        contains: [
+          COMMENT,
+          {
+            begin: [MODULE_NAME_RE],
+            beginScope: {
+              1: 'title'
+            },
+            end: hljs.MATCH_NOTHING_RE,
+            endsParent: true,
+            contains: [
+              COMMENT,
+              {
+                scope: 'keyword',
+                match: kwSemicolon,
+                endsParent: true
+              },
+              {
+                begin: [kwPublic],
+                beginScope: {
+                  1: 'keyword'
+                },
+                end: hljs.MATCH_NOTHING_RE,
+                endsParent: true,
+                illegal: /--.*$/,
+                contains: [
+                  COMMENT,
+                  {
+                    scope: 'keyword',
+                    match: kwSemicolon,
+                    endsParent: true
+                  }
+                ]
+              },
+              {
+                beginKeywords: 'hiding using',
+                end: hljs.MATCH_NOTHING_RE,
+                endsParent: true,
+                contains: [
+                  COMMENT,
+                  {
+                    begin: /\{/,
+                    beginScope: 'keyword',
+                    end: /\}/,
+                    endScope: 'keyword',
+                    endsParent: true,
+                    contains: [
+                      COMMENT,
+                      {
+                        begin: [/[a-zA-Z][a-zA-Z0-9_]*/],
+                        beginScope: {
+                          1: 'symbol'
+                        },
+                        contains: [
+                          COMMENT,
+                          {
+                            scope: 'keyword',
+                            match: kwSemicolon,
+                            contains: [COMMENT]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      // open M (public)..
+      {
+        begin: [MODULE_NAME_RE],
+        beginScope: {
+          1: 'title'
+        },
+        end: hljs.MATCH_NOTHING_RE,
+        endsParent: true,
+        contains: [
+          {
+            scope: 'keyword',
+            match: kwSemicolon,
+            endsParent: true
+          },
+          {
+            begin: [kwPublic],
+            beginScope: {
+              1: 'keyword'
+            },
+            end: hljs.MATCH_NOTHING_RE,
+            endsParent: true,
+            illegal: /--.*$/,
+            contains: [
+              COMMENT,
+              {
+                scope: 'keyword',
+                match: kwSemicolon,
+                endsParent: true
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  };
+
+  const INDUCTIVE = {
+    beginKeywords: 'type',
+    end: [kwSemicolon],
+    endScope: 'keyword',
+    contains: [
+      COMMENT,
+      {
+        begin: [/[a-zA-Z][a-zA-Z0-9_]*/],
+        beginScope: {
+          1: 'title'
+        },
+        end: hljs.MATCH_NOTHING_RE,
+        endsParent: true,
+        contains: [
+          COMMENT,
+          // ( A : Type ) : Type
+          {
+            begin: /\(/,
+            end: /\)/,
+            contains: [COMMENT]
+          },
+          {
+            begin: /:=/,
+            beginScope: 'keyword',
+            end: kwSemicolon,
+            endScope: 'keyword',
+            endsParent: true,
+            contains: [
+              COMMENT
+              // | id : typeSignature ;?
+            ]
+          }
+        ]
+      }
+    ]
+  };
+
+  const STRINGS = {
+    scope: 'string',
+    variants: [hljs.QUOTE_STRING_MODE]
+  };
 
   return {
     name: 'Juvix',
@@ -182,18 +385,23 @@ function hljsDefineJuvix(hljs) {
     case_insensitive: false, // language is case-insensitive
     unicodeRegex: true,
     disableAutodetect: true,
-    keywords: KEYWORDS,
-    // keywords: {
-    //   keyword: KEYWORDS,
-    // //   built_in: BUILT_INS,
-    // //   literal: LITERALS,
-    //   symbol: SYMBOLS,
-    // //   'variable.language': LANGUAGE_VARIABLES
-    // },
-    contains: [COMMENT
-      , INFIX
-      , {'scope': 'keyword', 'match': kwAssign}
-      // , SYMBOL_LIST
+    keywords: {
+      keyword: ['Type', 'let', 'in', 'print', 'type', 'where', 'Nat'],
+      literal: ['true', 'false'],
+      built_in: ['print', 'IO']
+    },
+    contains: [
+      COMMENT,
+      STRINGS,
+      hljs.C_NUMBER_MODE,
+      MODULE_BEGIN,
+      MODULE_END,
+      INFIX,
+      OPEN,
+      IMPORT
+      // {
+      //   beginKeywords: 'let in print ;',
+      // }
     ]
   };
 }

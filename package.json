@@ -11,7 +11,7 @@
     "test": "./node_modules/.bin/mocha --reporter spec",
     "mocha": "mocha test/markup",
     "changelog": "auto-changelog --output CHANGELOG.md --hide-credit -p --commit-limit false",
-    "npm-patch": "npm version patch && npm publish",
+    "npm-patch": "npm version patch && npm publish && npm run changelog",
     "upgrade-dependencies": "ncu -u",
     "fix": "prettier --write . && eslint -c .eslintrc.js --fix"
   },
@@ -31,18 +31,18 @@
     "@babel/core": "^7.21.3",
     "auto-changelog": "^2.4.0",
     "babel-loader": "^9.1.2",
-    "copy-webpack-plugin": "^10.0.9",
+    "copy-webpack-plugin": "^11.0.0",
     "highlight.js": "^11.7.0",
     "minimist": "^1.2.8",
     "mocha": "^10.2.0",
     "prettier": "2.8.7",
     "should": "^13.2.3",
     "typescript": "^5.0.2",
-    "uglify-js": "^3.3.11"
+    "uglify-js": "^3.17.4"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.56.0",
-    "eslint": "^8.36.0",
+    "@typescript-eslint/eslint-plugin": "^5.57.0",
+    "eslint": "^8.37.0",
     "highlight.js": "^11.7.0"
   }
 }
