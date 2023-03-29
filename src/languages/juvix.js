@@ -386,9 +386,21 @@ function hljsDefineJuvix(hljs) {
     unicodeRegex: true,
     disableAutodetect: true,
     keywords: {
-      keyword: ['Type', 'let', 'in', 'print', 'type', 'where', 'Nat'],
+      keyword: [
+        'Type',
+        'let',
+        'in',
+        'print',
+        'type',
+        'where',
+        'Nat',
+        'terminating',
+        'positive',
+        'axiom',
+        'builtin'
+      ],
       literal: ['true', 'false'],
-      built_in: ['print', 'IO']
+      built_in: ['print', 'IO', 'if']
     },
     contains: [
       COMMENT,
@@ -398,10 +410,27 @@ function hljsDefineJuvix(hljs) {
       MODULE_END,
       INFIX,
       OPEN,
-      IMPORT
-      // {
-      //   beginKeywords: 'let in print ;',
-      // }
+      IMPORT,
+      // TODO: refactor this
+      { scope: 'keyword', match: /:=/ },
+      { scope: 'keyword', match: /:/ },
+      { scope: 'keyword', match: /\\/ },
+      { scope: 'keyword', match: /->/ },
+      { scope: 'keyword', match: /→/ },
+      { scope: 'keyword', match: /↦/ },
+      { scope: 'keyword', match: />/ },
+      { scope: 'keyword', match: /</ },
+      { scope: 'keyword', match: /=/ },
+      { scope: 'keyword', match: /≠/ },
+      { scope: 'keyword', match: /≤/ },
+      { scope: 'keyword', match: /<=/ },
+      { scope: 'keyword', match: /≥/ },
+      { scope: 'keyword', match: />=/ },
+      { scope: 'keyword', match: /\|/ },
+      { scope: 'keyword', match: /->/ },
+      { scope: 'keyword', match: /\\/ },
+      { scope: 'keyword', match: /→/ },
+      { scope: 'keyword', match: /↦/ }
     ]
   };
 }
