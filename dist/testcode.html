@@ -24,6 +24,43 @@
     <h1>Example of a Juvix program!</h1>
 
     <pre><code class="language-juvix">
+      module {- coment -} Demo.Example.Tutorial {-comment-} ;
+-- {-- Inline comments are also supported. -}
+-- -- Inline comments are also supported. --
+--- Judoc comment.
+-- {name1; name2}
+-- {name1; name2;};
+infix  {--- hhh --} 4  {--- hhh --} _≤_  {--- hhh --};
+infixl 6 _+_;
+infixr 7 op;
+open import Stdlib.Prelude; import Stdlib.Data.Nat.Ord;
+open import Stdlib.Data.Ord public; open import Stdlib.Data.Ord XXX public;
+open import Stdlib.Data.Ord public --asdf;
+open import Stdlib.Data.Ord public {--asdf--};
+open import Stdlib.Map using {name1; name2 };
+open import Stdlib.Map using {name1; 
+-- comment
+name2;
+{- final comment here -}
+};
+open M;
+open N public;
+open import Stdlib.Map using {name1; name2} hiding {name3; name4} public;
+open import Stdlib.Map hiding {name3; name4};
+
+open import {--- hhh --} Stdlib.Data.Ord;
+open import Stdlib.Data.Product 
+-- comment in between 
+  using 
+  -- comment in between 
+  {name1; name2}
+  -- comment in the middle
+  ;
+
+module AA; 
+ -- cmoment
+end;
+
       module Format;
 
       open import Stdlib.Prelude hiding {,};

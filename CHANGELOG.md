@@ -2,7 +2,13 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
-#### [v0.0.11](https://github.com/anoma/highlightjs-juvix/compare/v0.0.11...v0.0.11)
+#### [v0.0.12](https://github.com/anoma/highlightjs-juvix/compare/v0.0.12...v0.0.12)
+
+#### [v0.0.12](https://github.com/anoma/highlightjs-juvix/compare/v0.0.11...v0.0.12)
+
+> 29 March 2023
+
+- add keyworkds [`4803d3e`](https://github.com/anoma/highlightjs-juvix/commit/4803d3e8331dae46c56dee004ed16000591ee545)
 
 #### [v0.0.11](https://github.com/anoma/highlightjs-juvix/compare/v0.0.10...v0.0.11)
 
