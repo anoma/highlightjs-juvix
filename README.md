@@ -4,7 +4,7 @@
 
 [![NPM Version](https://badge.fury.io/js/highlightjs-juvix.svg?style=flat)](https://npmjs.org/package/highlightjs-juvix)
 
- [![CDN download](https://badgen.net/badge/jsDelivr/download/blue?icon=jsdelivr)](https://cdn.jsdelivr.net/npm/highlightjs-juvix/dist/juvix.min.js) 
+[![CDN download](https://badgen.net/badge/jsDelivr/download/blue?icon=jsdelivr)](https://cdn.jsdelivr.net/npm/highlightjs-juvix/dist/juvix.min.js)
 
 ## Usage
 
@@ -43,7 +43,7 @@ This will find and highlight code inside `<pre><code>` tags; it tries to detect 
 In case you want to highlight sessions with the Juvix REPL, you can use the following.
 
 ```html
-    <pre><code class="language-juvixRepl">
+<pre><code class="language-juvixRepl">
       Stdlib.Prelude> --example of a comment
       Stdlib.Prelude> 3 + 4
     </code></pre>
