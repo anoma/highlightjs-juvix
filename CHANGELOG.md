@@ -2,7 +2,15 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
-#### [v0.0.12](https://github.com/anoma/highlightjs-juvix/compare/v0.0.12...v0.0.12)
+#### [v0.0.13](https://github.com/anoma/highlightjs-juvix/compare/v0.0.13...v0.0.13)
+
+#### [v0.0.13](https://github.com/anoma/highlightjs-juvix/compare/v0.0.12...v0.0.13)
+
+> 30 March 2023
+
+- Add juvixREPL and fix README [`3faf739`](https://github.com/anoma/highlightjs-juvix/commit/3faf7393bdfb855b39f65e89658a398b96e00f6c)
+- Initial working version [`79e815e`](https://github.com/anoma/highlightjs-juvix/commit/79e815eaaf1e87562335232b66ef64df49fbb0cb)
+- Add npm publish for ease [`9df671a`](https://github.com/anoma/highlightjs-juvix/commit/9df671adcd08a89fb814833d777fe7c3179088cb)
 
 #### [v0.0.12](https://github.com/anoma/highlightjs-juvix/compare/v0.0.11...v0.0.12)
 
