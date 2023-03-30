@@ -2,7 +2,9 @@
 
 [![GitHub](https://img.shields.io/github/license/anoma/highlightjs-juvix)](https://github.com/anoma/highlightjs-juvix/blob/main/LICENSE.md)
 
-<!-- [![CDN download](https://badgen.net/badge/jsDelivr/download/blue?icon=jsdelivr)](https://cdn.jsdelivr.net/npm/highlightjs-juvix/dist/juvix.min.js) -->
+[![NPM Version](https://badge.fury.io/js/highlightjs-juvix.svg?style=flat)](https://npmjs.org/package/highlightjs-juvix)
+
+ [![CDN download](https://badgen.net/badge/jsDelivr/download/blue?icon=jsdelivr)](https://cdn.jsdelivr.net/npm/highlightjs-juvix/dist/juvix.min.js) 
 
 ## Usage
 
@@ -20,6 +22,7 @@ Simply load this module after loading Highlight.js. You'll use the minified vers
 <link rel="stylesheet" href="https://unpkg.com/highlightjs/styles/vs.css" />
 <script type="text/javascript">
   hljs.registerLanguage('juvix', hljsDefineJuvix); // this might not be needed
+  hljs.registerLanguage('juvixRepl', hljsDefineJuvixRepl); // this might not be needed
   hljs.highlightAll();
 </script>
 ```
@@ -35,6 +38,15 @@ This will find and highlight code inside `<pre><code>` tags; it tries to detect 
       main := printStringLn "hello world!";
     </code>
 </pre>
+```
+
+In case you want to highlight sessions with the Juvix REPL, you can use the following.
+
+```html
+    <pre><code class="language-juvixRepl">
+      Stdlib.Prelude> --example of a comment
+      Stdlib.Prelude> 3 + 4
+    </code></pre>
 ```
 
 For more details see [Highlight.js main page](https://github.com/highlightjs/highlight.js#highlightjs).
@@ -73,6 +85,6 @@ Feel free to create issues and pull requests to improve this package.
 
 ## Links
 
+- Learn more about Juvix: <https://juvix.org/>
 - The official site for the Highlight.js library is <https://highlightjs.org/>.
 - The Highlight.js GitHub project: <https://github.com/highlightjs/highlight.js>
-- Learn more about Juvix: <https://juvix.org/>

@@ -4,12 +4,13 @@
     <title>Testing Juvix plugin</title>
     <meta charset="UTF-8" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script charset="UTF-8" src="./../dist/juvix.min.js"></script>
     <!-- <script charset="UTF-8" src="./../src/languages/juvix.js"></script> -->
-    <script charset="UTF-8" src="./../src/languages/juvix.js"></script>
     <link rel="stylesheet" href="./highlight.css" />
     <script>
       hljs.debugMode( );
       hljs.registerLanguage('juvix', hljsDefineJuvix);
+      hljs.registerLanguage('juvixRepl', hljsDefineJuvixRepl);
       hljs.highlightAll();
     </script>
     <style>
@@ -22,6 +23,22 @@
 
   <body>
     <h1>Example of a Juvix program!</h1>
+
+    <pre><code class="language-juvixRepl">
+      Stdlib.Prelude> --example of a comment
+      Stdlib.Prelude> 3 + 4
+      7
+      Stdlib.Prelude> 1 + 3 * 7
+      22
+      Stdlib.Prelude> div 35 4
+      8
+      Stdlib.Prelude> mod 35 4
+      3
+      Stdlib.Prelude> let x := 3 in x
+      3
+      Stdlib.Prelude> infixl 6 _+_;
+      0
+    </code></pre>
 
     <pre><code class="language-juvix">
       module {- coment -} Demo.Example.Tutorial {-comment-} ;
