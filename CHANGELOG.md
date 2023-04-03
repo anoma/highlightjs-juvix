@@ -2,7 +2,13 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
-#### [v0.0.14](https://github.com/anoma/highlightjs-juvix/compare/v0.0.14...v0.0.14)
+#### [v0.0.15](https://github.com/anoma/highlightjs-juvix/compare/v0.0.15...v0.0.15)
+
+#### [v0.0.15](https://github.com/anoma/highlightjs-juvix/compare/v0.0.14...v0.0.15)
+
+> 4 April 2023
+
+- Update changelo [`df4a5b7`](https://github.com/anoma/highlightjs-juvix/commit/df4a5b71dead43c4595efb2ded8c935392f49c97)
 
 #### [v0.0.14](https://github.com/anoma/highlightjs-juvix/compare/v0.0.13...v0.0.14)
 
