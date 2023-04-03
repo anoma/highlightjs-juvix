@@ -7,7 +7,8 @@
   "author": "Jonathan Cubides and contributors on GitHub",
   "license": "MIT",
   "scripts": {
-    "compress": "uglifyjs src/languages/juvix.js --compress --mangle --warn --output dist/juvix.min.js",
+    "mdbook-support": "uglifyjs src/languages/mdbook/juvix.js --compress --mangle --warn --output dist/juvix-mdbook.min.js",
+    "compress": "npm run mdbook-support && uglifyjs src/languages/juvix.js --compress --mangle --warn --output dist/juvix.min.js",
     "test": "./node_modules/.bin/mocha --reporter spec",
     "mocha": "mocha test/markup",
     "changelog": "auto-changelog --output CHANGELOG.md --hide-credit -p --commit-limit false",
