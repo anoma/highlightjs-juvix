@@ -1,6 +1,6 @@
 {
   "name": "highlightjs-juvix",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Juvix language grammars for HightlightJS",
   "main": "dist/juvix.min.js",
   "repository": "git@github.com:anoma/highlightjs-juvix.git",
