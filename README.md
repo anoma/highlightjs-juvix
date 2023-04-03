@@ -21,8 +21,8 @@ Simply load this module after loading Highlight.js. You'll use the minified vers
 	those in highlightjs core repo -->
 <link rel="stylesheet" href="https://unpkg.com/highlightjs/styles/vs.css" />
 <script type="text/javascript">
-  hljs.registerLanguage('juvix', hljsDefineJuvix); // this might not be needed
-  hljs.registerLanguage('juvixRepl', hljsDefineJuvixRepl); // this might not be needed
+  hljs.registerLanguage('juvix', hljsDefineJuvix);
+  hljs.registerLanguage('jrepl', hljsDefineJuvixRepl);
   hljs.highlightAll();
 </script>
 ```
@@ -43,7 +43,7 @@ This will find and highlight code inside `<pre><code>` tags; it tries to detect 
 In case you want to highlight sessions with the Juvix REPL, you can use the following.
 
 ```html
-<pre><code class="language-juvixRepl">
+<pre><code class="language-jrepl">
       Stdlib.Prelude> --example of a comment
       Stdlib.Prelude> 3 + 4
     </code></pre>
@@ -73,6 +73,52 @@ var hljsJuvix = require('highlightjs-juvix');
 hljs.registerLanguage('juvix', hljsJuvix);
 hljs.highlightAll();
 ```
+
+### MDBOOK integration
+
+Unfortunately, Mdbook does not support the latest version of `Highlight.js` and
+uses the outdated version 10.1.0. As Mdbook is utilized for documenting Juvix,
+we have provided a custom Juvix language module tailored for this specific
+version of Highlight.js. To use it, replace juvix.min.js with
+juvix-mdbook.min.js. You can find this file in the `dist` directory, or you can
+use the CDN link.
+
+To proceed, you must edit the `theme/index.hbs` file and include the import of
+the `juvix-mdbook.min.js` file. Ensure that it is placed between the imports of
+`highlight.js` and `book.hs`, along with the language registration as
+demonstrated below:
+
+```html
+<script src="{{ path_to_root }}highlight.js"></script>
+<script
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/highlightjs-juvix/dist/juvix-mdbook.min.js"></script>
+<script>
+  hljs.registerLanguage('juvix', hljsDefineJuvix);
+  hljs.registerLanguage('jrepl', hljsDefineJuvixRepl);
+</script>
+<script src="{{ path_to_root }}book.js"></script>
+```
+
+Once the necessary changes have been made, you can utilize the Juvix language in your markdown files as shown below:
+
+<pre>
+```juvix
+module HelloWorld;
+open import Stdlib.Prelude;
+main : IO;
+main := printStringLn "hello world!";
+```
+</pre>
+
+In case you want to highlight sessions with the Juvix REPL, you can use the following.
+
+<pre>
+```jrepl
+Stdlib.Prelude> --example of a comment
+Stdlib.Prelude> 3 + 4
+```
+</pre>
 
 ## License
 

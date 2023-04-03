@@ -8,67 +8,10 @@ Website: https://juvix.org
 
 var module = module ? module : {}; // shim for browser use
 
-const kwAssign = '(:=)';
-const kwAt = '@';
-const kwAxiom = 'axiom';
-const kwCase = 'case';
-const kwColon = ':';
 const kwEnd = 'end';
-const kwHiding = 'hiding';
-const kwHole = '_';
 const kwImport = 'import';
-const kwIn = 'in';
-const kwInductive = 'type';
-const kwInfix = 'infix';
-const kwInfixl = 'infixl';
-const kwInfixr = 'infixr';
-const kwLambda = '(\\|λ)';
-const kwLet = 'let';
-const kwModule = 'module';
-const kwOpen = 'open';
-const kwPipe = '|';
-const kwPostfix = 'postfix';
 const kwPublic = 'public';
-const kwRightArrow = '(->|→)';
 const kwSemicolon = ';';
-const kwType = 'Type';
-const kwUsing = 'using';
-const kwWildcard = '_';
-const kwPositive = 'positive';
-const kwTerminating = 'terminating';
-const kwMapsTo = '(->|↦)';
-
-const kwAll = [
-  kwAssign,
-  kwAt,
-  kwAxiom,
-  kwCase,
-  kwColon,
-  kwEnd,
-  kwHiding,
-  kwHole,
-  kwImport,
-  kwIn,
-  kwInductive,
-  kwInfix,
-  kwInfixl,
-  kwInfixr,
-  kwLambda,
-  kwLet,
-  kwModule,
-  kwOpen,
-  kwPipe,
-  kwPostfix,
-  kwPublic,
-  kwRightArrow,
-  kwSemicolon,
-  kwType,
-  kwUsing,
-  kwWildcard,
-  kwPositive,
-  kwTerminating,
-  kwMapsTo
-];
 
 const MODULE_NAME_RE = /[a-zA-Z][a-zA-Z0-9_]*(\.[a-zA-Z][a-zA-Z0-9_]*)*/;
 
@@ -438,7 +381,7 @@ function hljsDefineJuvix(hljs) {
 function hljsDefineJuvixRepl(hljs) {
   return {
     name: 'Juvix REPL',
-    aliases: ['juvixRepl'],
+    aliases: ['jrepl'],
     case_insensitive: false,
     unicodeRegex: true,
     contains: [
@@ -465,5 +408,5 @@ function hljsDefineJuvixRepl(hljs) {
 
 module.exports = function (hljs) {
   hljs.registerLanguage('juvix', hljsDefineJuvix);
-  hljs.registerLanguage('juvixRepl', hljsDefineJuvixRepl);
+  hljs.registerLanguage('jrepl', hljsDefineJuvixRepl);
 };
