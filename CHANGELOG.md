@@ -2,7 +2,12 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
-#### [v0.0.13](https://github.com/anoma/highlightjs-juvix/compare/v0.0.13...v0.0.13)
+> 4 April 2023
+
+- Add support for mdbook [`7abc2f7`](https://github.com/anoma/highlightjs-juvix/commit/7abc2f72b8fa773d794546bd2dde4708bfdf3ee4)
+- Add changelog [`ffba68e`](https://github.com/anoma/highlightjs-juvix/commit/ffba68eb87f436c478d8022cc098ec3b5c3ae4a3)
+- Update changelog [`39d8a88`](https://github.com/anoma/highlightjs-juvix/commit/39d8a884137dc8cafd0fb3559ea264bde74e4452)
+- Fix package.json [`12157ad`](https://github.com/anoma/highlightjs-juvix/commit/12157ad6ff5b16845eaecc60bef2abd2fc0eef3a)
 
 #### [v0.0.13](https://github.com/anoma/highlightjs-juvix/compare/v0.0.12...v0.0.13)
 
