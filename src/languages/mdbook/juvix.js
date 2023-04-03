@@ -15,27 +15,27 @@ var module = module ? module : {}; // shim for browser use
 var MATCH_NOTHING_RE = /$^/; // to force a mode to never match
 
 var INLINE_COMMENT = {
-  className: "comment",
+  className: 'comment',
   begin: /--/,
-  end: /$/,
+  end: /$/
 };
 
 var BLOCK_COMMENT = {
-  className: "comment",
+  className: 'comment',
   begin: /\{-/,
   end: /-\}/,
-  relevance: 1,
+  relevance: 1
 };
 
 var COMMENT = {
-  scope: "comment",
-  contains: ["self"],
-  variants: [INLINE_COMMENT, BLOCK_COMMENT],
+  scope: 'comment',
+  contains: ['self'],
+  variants: [INLINE_COMMENT, BLOCK_COMMENT]
 };
 
 var STRINGS = {
-  className: "string",
-  variants: [hljs.QUOTE_STRING_MODE],
+  className: 'string',
+  variants: [hljs.QUOTE_STRING_MODE]
 };
 
 var NUMBERS = hljs.C_NUMBER_MODE;
@@ -45,90 +45,89 @@ var IDEN_RE = /[^(\s|;|\{|\}|\(|\)|@)]+/;
 
 var OTHER_SYMBOLS_AND_OPERATORS = [
   {
-    className: "keyword",
+    className: 'keyword',
     begin: /(@|:=|->|↦|;|\||\{|\}|\\|λ|\_)/,
-    endsSameBegin: true,
+    endsSameBegin: true
   },
   {
-    className: "operator",
+    className: 'operator',
     begin: /(\*|==|>>|=?>|<=?|-|\+)/,
-    endsSameBegin: true,
+    endsSameBegin: true
   },
-  { className: "punctuation", begin: /(\(|\))/, endsSameBegin: true },
+  { className: 'punctuation', begin: /(\(|\))/, endsSameBegin: true }
 ];
 
 function hljsDefineJuvix(hljs) {
   const JUVIX_KEYWORDS = {
     // The keywords not covered by the other modes are included here
-    keyword:
-      "let in print terminating positive axiom builtin",
-    built_in: "trace IO if",
-    literal: "true false",
+    keyword: 'let in print terminating positive axiom builtin',
+    built_in: 'trace IO if',
+    literal: 'true false'
   };
 
   const MODULE_BEGIN = {
-    className: "keyword",
+    className: 'keyword',
     begin: /module/,
     end: /;/,
     contains: [
       BLOCK_COMMENT,
       {
-        className: "title",
+        className: 'title',
         begin: MODULE_NAME_RE,
         endsParent: true,
-        contains: [BLOCK_COMMENT],
-      },
-    ],
+        contains: [BLOCK_COMMENT]
+      }
+    ]
   };
 
   const PUBLIC = {
-    className: "keyword",
+    className: 'keyword',
     begin: /public/,
     end: /;/,
     endsParent: true,
-    contains: [COMMENT],
+    contains: [COMMENT]
   };
 
   const MODULE_END = {
-    className: "keyword",
+    className: 'keyword',
     begin: /end/,
-    end: /;/,
+    end: /;/
   };
 
   const INFIX = {
-    className: "keyword",
+    className: 'keyword',
     begin: /((infix(l|r)?)|postfix)/,
     end: MATCH_NOTHING_RE,
     contains: [
       COMMENT,
       {
-        className: "number",
+        className: 'number',
         begin: /\d+/,
         end: MATCH_NOTHING_RE,
         endsParent: true,
         contains: [
           COMMENT,
           {
-            className: "symbol",
+            className: 'symbol',
             begin: IDEN_RE,
             end: /;/,
             endsParent: true,
-            contains: [COMMENT],
-          },
-        ],
-      },
-    ],
+            contains: [COMMENT]
+          }
+        ]
+      }
+    ]
   };
 
   const IMPORT = {
-    className: "keyword",
+    className: 'keyword',
     begin: /import/,
     end: MATCH_NOTHING_RE,
     endsParent: true,
     contains: [
       COMMENT,
       {
-        className: "title",
+        className: 'title',
         begin: MODULE_NAME_RE,
         end: MATCH_NOTHING_RE,
         endsParent: true,
@@ -136,46 +135,46 @@ function hljsDefineJuvix(hljs) {
           COMMENT,
           PUBLIC,
           {
-            className: "keyword",
+            className: 'keyword',
             begin: /;/,
-            endsParent: true,
+            endsParent: true
           },
           {
-            className: "keyword",
+            className: 'keyword',
             begin: /(hiding|using)/,
             end: MATCH_NOTHING_RE,
             contains: [
               COMMENT,
               {
-                className: "keyword",
+                className: 'keyword',
                 begin: /\{/,
                 end: /\}/,
                 endsParent: true,
                 contains: [
                   COMMENT,
                   {
-                    className: "symbol",
+                    className: 'symbol',
                     begin: IDEN_RE,
-                    contains: [COMMENT, PUBLIC],
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      },
-    ],
+                    contains: [COMMENT, PUBLIC]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
   };
 
   const OPEN = {
-    className: "keyword",
+    className: 'keyword',
     begin: /open/,
     end: MATCH_NOTHING_RE,
     contains: [
       COMMENT,
       IMPORT,
       {
-        className: "title",
+        className: 'title',
         begin: MODULE_NAME_RE,
         end: MATCH_NOTHING_RE,
         endsParent: true,
@@ -183,24 +182,24 @@ function hljsDefineJuvix(hljs) {
           COMMENT,
           PUBLIC,
           {
-            className: "keyword",
+            className: 'keyword',
             begin: /;/,
-            endsParent: true,
-          },
-        ],
-      },
-    ],
+            endsParent: true
+          }
+        ]
+      }
+    ]
   };
 
   const INDUCTIVE = {
-    className: "inductive",
+    className: 'inductive',
     begin: /type/,
     end: MATCH_NOTHING_RE,
-    keywords: "type",
+    keywords: 'type',
     contains: [
       COMMENT,
       {
-        className: "symbol",
+        className: 'symbol',
         begin: IDEN_RE,
         end: MATCH_NOTHING_RE,
         endsParent: true,
@@ -214,7 +213,7 @@ function hljsDefineJuvix(hljs) {
             contains: [
               COMMENT,
               {
-                className: "symbol",
+                className: 'symbol',
                 begin: IDEN_RE,
                 end: MATCH_NOTHING_RE,
                 endsParent: true,
@@ -222,22 +221,22 @@ function hljsDefineJuvix(hljs) {
                   COMMENT,
                   {
                     // type annotation
-                    className: "keyword",
+                    className: 'keyword',
                     begin: /:/,
                     end: /Type/,
-                    endsParent: true,
-                  },
-                ],
-              },
-            ],
+                    endsParent: true
+                  }
+                ]
+              }
+            ]
           },
           {
-            className: "keyword",
+            className: 'keyword',
             begin: /:[^=]/,
-            end: /Type/,
+            end: /Type/
           },
           {
-            className: "keyword",
+            className: 'keyword',
             begin: /:=/,
             end: /;/,
             endsParent: true,
@@ -250,78 +249,78 @@ function hljsDefineJuvix(hljs) {
                 endsParent: true,
                 contains: [
                   COMMENT,
-                  "self",
+                  'self',
                   {
                     // constructor name
-                    className: "aqui1",
+                    className: 'aqui1',
                     begin: /[^(\s|;|\{|\}|\(|\)|@)]+(?=\s:\s)/,
                     end: MATCH_NOTHING_RE,
                     contains: [
                       COMMENT,
                       {
-                        className: "keyword",
+                        className: 'keyword',
                         begin: /:[^=]/,
                         end: /(\||;)/,
                         contains: [
                           COMMENT,
                           {
-                            className: "keyword",
+                            className: 'keyword',
                             begin: /(:|\{|\}|->|→|Type)/,
-                            end: /\s*/,
+                            end: /\s*/
                           },
                           {
-                            className: "symbol",
+                            className: 'symbol',
                             begin: IDEN_RE,
-                            contains: [COMMENT],
-                          },
-                        ],
-                      },
-                    ],
+                            contains: [COMMENT]
+                          }
+                        ]
+                      }
+                    ]
                   },
                   {
-                    className: "keyword",
+                    className: 'keyword',
                     begin: /;/,
-                    endsParent: true,
-                  },
-                ],
+                    endsParent: true
+                  }
+                ]
               },
               {
-                className: "keyword",
+                className: 'keyword',
                 begin: /;/,
-                endsParent: true,
-              },
-            ],
-          },
-        ],
-      },
-    ],
+                endsParent: true
+              }
+            ]
+          }
+        ]
+      }
+    ]
   };
 
   const FUNCTION_SIGNATURE = {
-    className: "function",
+    className: 'function',
     begin: /[^(\s|;|\{|\}|\(|\)|@)]+(?=\s+:\s+[^:=]*;)/,
     end: /;/,
     contains: [
       COMMENT,
       {
-        className: "keyword",
+        className: 'keyword',
         begin: /:[^=]/,
         endsWithParent: true,
         contains: [
           COMMENT,
           {
-            className: "keyword",
+            className: 'keyword',
             begin: /(:|\{|\}|->|→|Type)/,
-            end: /\s+/,
+            end: /\s+/
           },
           {
-            className: "symbol",
+            className: 'symbol',
             begin: IDEN_RE,
-            contains: [COMMENT],
-          },
-        ],
-      },
-    ],
+            contains: [COMMENT]
+          }
+        ]
+      }
+    ]
   };
 
   var OPTS = [
@@ -337,84 +336,84 @@ function hljsDefineJuvix(hljs) {
     COMMENT,
     NUMBERS,
     STRINGS,
-    OTHER_SYMBOLS_AND_OPERATORS,
+    OTHER_SYMBOLS_AND_OPERATORS
   ];
 
   return {
-    name: "Juvix",
-    aliases: ["juvix"],
+    name: 'Juvix',
+    aliases: ['juvix'],
     keywords: JUVIX_KEYWORDS,
     contains: OPTS.concat([
       {
-        className: "keyword",
+        className: 'keyword',
         begin: /:(?=\s)/,
         end: MATCH_NOTHING_RE,
         contains: [
           COMMENT,
           {
             begin: /(:=|\)|\})/,
-            className: "keyword",
-            endsParent: true,
+            className: 'keyword',
+            endsParent: true
           },
           {
-            className: "keyword",
+            className: 'keyword',
             begin: /(:|\{|\}|->|→|Type)/,
-            end: /\s+/,
+            end: /\s+/
           },
           {
-            className: "symbol",
+            className: 'symbol',
             begin: IDEN_RE,
-            contains: [COMMENT],
-          },
-        ],
-      },
-    ]),
+            contains: [COMMENT]
+          }
+        ]
+      }
+    ])
   };
 }
 
 function hljsDefineJuvixRepl(hljs) {
   var REPL_COMMANDS = {
-    className: "meta-prompt-command",
+    className: 'meta-prompt-command',
     begin: /:([a-z]+)/,
     contains: [
       {
-        subLanguage: "juvix",
-        endsParent: true,
-      },
-    ],
+        subLanguage: 'juvix',
+        endsParent: true
+      }
+    ]
   };
   var REPL_EXPRESSION = [
     COMMENT,
     NUMBERS,
     STRINGS,
     REPL_COMMANDS,
-    OTHER_SYMBOLS_AND_OPERATORS,
+    OTHER_SYMBOLS_AND_OPERATORS
   ];
 
   return {
-    name: "Juvix REPL",
-    aliases: ["jrepl"],
+    name: 'Juvix REPL',
+    aliases: ['jrepl'],
     case_insensitive: false,
     unicodeRegex: true,
     keywords: {
-      keyword: "let in",
+      keyword: 'let in'
     },
     contains: REPL_EXPRESSION.concat([
       {
-        className: "meta-prompt",
+        className: 'meta-prompt',
         begin: /([a-zA-Z][a-zA-Z0-9_]*(\.[a-zA-Z][a-zA-Z0-9_]*))*>/,
         contains: REPL_EXPRESSION.concat([
           {
-            subLanguage: "juvix",
-            endsParent: true,
-          },
-        ]),
-      },
-    ]),
+            subLanguage: 'juvix',
+            endsParent: true
+          }
+        ])
+      }
+    ])
   };
 }
 
 module.exports = function (hljs) {
-  hljs.registerLanguage("juvix", hljsDefineJuvix);
-  hljs.registerLanguage("jrepl", hljsDefineJuvixRepl);
+  hljs.registerLanguage('juvix', hljsDefineJuvix);
+  hljs.registerLanguage('jrepl', hljsDefineJuvixRepl);
 };

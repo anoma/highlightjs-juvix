@@ -93,9 +93,9 @@ demonstrated below:
 <script
   type="text/javascript"
   src="https://cdn.jsdelivr.net/npm/highlightjs-juvix/dist/juvix-mdbook.min.js"></script>
-<script >
-hljs.registerLanguage('juvix', hljsDefineJuvix);
-hljs.registerLanguage('jrepl', hljsDefineJuvixRepl);
+<script>
+  hljs.registerLanguage('juvix', hljsDefineJuvix);
+  hljs.registerLanguage('jrepl', hljsDefineJuvixRepl);
 </script>
 <script src="{{ path_to_root }}book.js"></script>
 ```
