@@ -1,9 +1,5 @@
-.hljs-meta-prompt {
-  color: #4e0285;
-}
-
-.hljs-meta-prompt-command {
-  color: #a70072;
+.hljs-meta {
+  color: coral;
 }
 
 .hljs-inductive {
@@ -14,11 +10,11 @@
   color: #00a822;
 }
 
-.hljs-constructor {
-  color: #a37acc;
+.hljs-function {
+  color: #d78810;
 }
 
-.hljs-function {
+.hljs-symbol {
   color: #d78810;
 }
 
