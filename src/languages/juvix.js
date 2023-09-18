@@ -335,12 +335,16 @@ function hljsDefineJuvix(hljs) {
         'in',
         'print',
         'type',
-        'where',
         'Nat',
         'terminating',
         'positive',
         'axiom',
-        'builtin'
+        'builtin',
+        'syntax',
+        'trait',
+        'instance',
+        'case',
+        'of'
       ],
       literal: ['true', 'false'],
       built_in: ['print', 'IO', 'if']
